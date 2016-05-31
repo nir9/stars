@@ -1,22 +1,33 @@
+var DIRECTIONS = {
+    LEFT: -1,
+    RIGHT: 1
+};
+
 function Point(x, y, z) {
     this.cartesian = true;
     this.x = x;
     this.y = y;
     this.z = z;
 
-    this.move = function (x,y,z) { this.x = x; this.y = y; if(z){this.z = z;}}
+    this.move = function (x, y, z) {
+        this.x = x;
+        this.y = y;
+        if (z) {
+            this.z = z;
+        }
+    }
 
     this.translate = function (dx, dy, dz) {
         this.x += dx;
         this.y += dy;
 
-        if(dz) {
-          this.z += dz;
+        if (dz) {
+            this.z += dz;
         }
     }
 
     this.toString = function () {
-        console.log("Point {x:" + this.x + ", y:" + this.y +"}");
+        console.log("Point {x:" + this.x + ", y:" + this.y + "}");
     }
 
     // Copies one points properties
@@ -34,17 +45,24 @@ function Point(x, y, z) {
         var dy = Math.abs(point.y - this.y);
         var dz = Math.abs(point.z - this.z);
 
-        var c = Math.sqrt(Math.pow(dx,2) + Math.pow(dy,2) + Math.pow(dz,2));
+        var c = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2) + Math.pow(dz, 2));
         return c;
     }
 
 
-    this.getCoords = function() {
-        if(this.cartesian) {
-          return {x: winWidth/2 + this.x/this.z, y: winHeight/2 + this.y/this.z, z: this.z};
-        }
-        else {
-          return {x: this.x, y: this.y, z: this.z};
+    this.getCoords = function () {
+        if (this.cartesian) {
+            return {
+                x: winWidth / 2 + this.x / this.z,
+                y: winHeight / 2 + this.y / this.z,
+                z: this.z
+            };
+        } else {
+            return {
+                x: this.x,
+                y: this.y,
+                z: this.z
+            };
         }
     }
 }
@@ -58,7 +76,7 @@ var keys = {
 }
 
 function KeyboardManager(keyDownEvent) {
-     //Navigation
+    //Navigation
     $("body").on('keydown', function (e) { //for arrow keys
 
         /* left = 37, up = 38, right = 39, down = 40 */
@@ -67,4 +85,10 @@ function KeyboardManager(keyDownEvent) {
         keyDownEvent(Code);
     });
 
+}
+
+
+function sign(num) {
+    if(num == 0) {return 0;}
+    return (num > 0) ? 1 : -1;
 }
