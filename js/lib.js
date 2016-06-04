@@ -27,7 +27,7 @@ function Point(x, y, z) {
     }
 
     this.toString = function () {
-        console.log("Point {x:" + this.x + ", y:" + this.y + "}");
+        console.log("Point {x:" + this.x + ", y:" + this.y + ", z:" + this.z + "}");
     }
 
     // Copies one points properties
